@@ -1,0 +1,411 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+ /*
+
+
+*/
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #111827;
+  font-family: Arial;
+}
+
+.tweets-main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 32px 16px;
+  box-sizing: border-box;
+}
+
+.tweets-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(100%, 600px);
+  padding: 16px;
+  border: 1px solid #e6ecf0;
+  border-radius: 20px 20px 0 0;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.tweets-header h1 {
+  margin: 2px 0 0;
+  color: #0f1419;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.tweets-eyebrow {
+  margin: 0;
+  color: #1d9bf0;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tweet-create-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background-color: #1d9bf0;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.tweet-create-button:hover {
+  background-color: #1a8cd8;
+  transform: translateY(-1px);
+}
+
+.tweet-create-button:focus-visible {
+  outline: 3px solid rgb(29 155 240 / 30%);
+  outline-offset: 3px;
+}
+
+.tweet-actions-menu {
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.tweet-actions-trigger {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  place-items: center;
+  border-radius: 999px;
+  color: #536471;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.tweet-actions-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.tweet-actions-trigger svg {
+  width: 20px;
+  height: 20px;
+  fill: currentcolor;
+}
+
+.tweet-actions-trigger:hover,
+.tweet-actions-menu[open] .tweet-actions-trigger {
+  background-color: rgb(29 155 240 / 10%);
+  color: #1d9bf0;
+}
+
+.tweet-actions-trigger:focus-visible {
+  outline: 3px solid rgb(29 155 240 / 30%);
+  outline-offset: 2px;
+}
+
+.tweet-actions-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 160px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 28px rgb(0 0 0 / 18%);
+}
+
+.tweet-actions-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  background-color: #ffffff;
+  color: #0f1419;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tweet-actions-item:hover {
+  background-color: #f7f9f9;
+}
+
+.tweet-actions-item:focus-visible {
+  position: relative;
+  outline: 3px solid rgb(29 155 240 / 30%);
+  outline-offset: -3px;
+}
+
+.tweet-actions-item-danger {
+  color: #f4212e;
+}
+
+.tweet-actions-delete-form {
+  margin: 0;
+}
+
+
+.tweet-list {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  border: 1px solid #e5e7eb;
+  border-radius: 0 0 20px 20px;
+  width: min(100%, 600px);
+  box-sizing: border-box
+}
+
+.tweet-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-bottom: 0;
+  background-color: white;
+}
+
+.tweet-content-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.tweet-content-link:focus-visible {
+  outline: 3px solid rgb(29 155 240 / 30%);
+  outline-offset: -3px;
+}
+
+.tweet-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.tweet-featured-image {
+  display: block;
+  grid-column: 1 / -1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.tweet-content + .tweet-content {
+  border-top: 1px solid #e5e7eb;
+}
+
+.tweet-content:last-child {
+  border-radius: 0 0 20px 20px;
+}
+
+.tweet-form-card {
+  width: min(calc(100% - 32px), 600px);
+  margin: 32px auto;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 18px 45px rgb(0 0 0 / 18%);
+}
+
+.tweet-form-header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tweet-form-header h1 {
+  margin: 4px 0 0;
+  color: #0f1419;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.tweet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+}
+
+.tweet-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tweet-form-label {
+  color: #0f1419;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.tweet-form-editor {
+  min-height: 180px;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #0f1419;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.55;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.tweet-form-editor:focus {
+  border-color: #1d9bf0;
+  box-shadow: 0 0 0 3px rgb(29 155 240 / 18%);
+  outline: none;
+}
+
+.tweet-form-errors {
+  padding: 14px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background-color: #fef2f2;
+  color: #991b1b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tweet-form-errors ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.tweet-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.tweet-form-cancel,
+.tweet-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.tweet-form-cancel {
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #334155;
+}
+
+.tweet-form-cancel:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+.tweet-form-submit {
+  border: 0;
+  background-color: #1d9bf0;
+  color: #ffffff;
+}
+
+.tweet-form-submit:hover {
+  background-color: #1a8cd8;
+  transform: translateY(-1px);
+}
+
+.tweet-form-cancel:focus-visible,
+.tweet-form-submit:focus-visible {
+  outline: 3px solid rgb(29 155 240 / 30%);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .tweets-header {
+    gap: 16px;
+    padding: 20px 16px;
+  }
+
+  .tweet-create-button {
+    min-height: 40px;
+    padding: 0 16px;
+  }
+
+  .tweet-form-card {
+    width: calc(100% - 24px);
+    margin: 12px auto;
+    border-radius: 16px;
+  }
+
+  .tweet-form-header,
+  .tweet-form {
+    padding: 20px 16px;
+  }
+
+  .tweet-form-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .tweet-form-cancel,
+  .tweet-form-submit {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+
+.tweet-card-actions {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tweet-reply-button {
+  color: #1d9bf0;
+  font-weight: 700;
+  text-decoration: none;
+}

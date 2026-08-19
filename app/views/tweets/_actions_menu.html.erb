@@ -1,0 +1,19 @@
+<details class="tweet-actions-menu">
+  <summary class="tweet-actions-trigger" aria-label="Tweet actions">
+    <svg aria-hidden="true" viewBox="0 0 24 24">
+      <circle cx="5" cy="12" r="2"></circle>
+      <circle cx="12" cy="12" r="2"></circle>
+      <circle cx="19" cy="12" r="2"></circle>
+    </svg>
+  </summary>
+
+  <div class="tweet-actions-popover">
+    <%= link_to "Edit", edit_tweet_path(tweet), class: "tweet-actions-item" %>
+    <%= button_to "Delete",
+                  tweet_path(tweet),
+                  method: :delete,
+                  class: "tweet-actions-item tweet-actions-item-danger",
+                  form_class: "tweet-actions-delete-form",
+                  form: { data: { turbo_confirm: "Are you sure?" } } %>
+  </div>
+</details>

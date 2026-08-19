@@ -1,0 +1,14 @@
+<main class="tweets-main-page">
+  <header class="tweets-header">
+    <div>
+      <p class="tweets-eyebrow">Your timeline</p>
+      <h1 id="tweets-heading">Twitter</h1>
+    </div>
+
+    <%= link_to "Create Tweet", new_tweet_path, class: "tweet-create-button" %>
+  </header>
+
+  <div class="tweet-list">
+    <%= render @tweets %>
+  </div>
+</main>

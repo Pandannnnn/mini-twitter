@@ -1,0 +1,36 @@
+
+<section class="tweet-form-card" aria-labelledby="tweet-form-heading">
+  <header class="tweet-form-header">
+    <p class="tweets-eyebrow"><%= tweet.persisted? ? "Update your post" : "Share something new" %></p>
+    <h1 id="tweet-form-heading"><%= tweet.persisted? ? "Edit tweet" : "Create tweet" %></h1>
+  </header>
+
+  <%= form_with model: tweet, class: "tweet-form" do |form| %>
+    <%= form.hidden_field :parent_id if tweet.parent_id.present? %>
+    <% if tweet.errors.any? %>
+      <div class="tweet-form-errors" role="alert">
+        <strong><%= pluralize(tweet.errors.count, "error") %> prevented this tweet from being saved:</strong>
+        <ul>
+          <% tweet.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="tweet-form-field">
+      <%= form.label :body, "What's happening?", class: "tweet-form-label" %>
+      <%= form.rich_textarea :body, class: "tweet-form-editor" %>
+    </div>
+
+    <div>
+    <%= form.label :featured_image, style: "display: block" %>
+    <%= form.file_field :featured_image, accept: "image/*" %>
+    </div>
+
+    <div class="tweet-form-actions">
+      <%= link_to "Cancel", root_path, class: "tweet-form-cancel" %>
+      <%= form.submit class: "tweet-form-submit" %>
+    </div>
+  <% end %>
+</section>

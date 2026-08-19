@@ -1,0 +1,34 @@
+<article class="tweet-content <%= "tweet-reply" if tweet.parent_id.present? %>">
+  <div class="tweet-details">
+    <div class="tweet-meta">
+      <strong><%= tweet.parent_id.present? ? "Reply" : "Tweet" %></strong>
+      <span aria-hidden="true">&middot;</span>
+      <time datetime="<%= tweet.created_at.iso8601 %>">
+        <%= time_ago_in_words(tweet.created_at) %> ago
+      </time>
+    </div>
+
+    <div class="tweet-body">
+      <%= tweet.body %>
+    </div>
+  </div>
+
+  <div class="tweet-card-actions">
+    <%= link_to "Reply",
+                new_tweet_path(parent_id: tweet.id),
+                class: "tweet-reply-button" %>
+
+    <%= render "actions_menu", tweet: tweet %>
+  </div>
+
+  <% if tweet.featured_image.attached? %>
+    <%= image_tag tweet.featured_image,
+                  class: "tweet-featured-image",
+                  alt: "Featured image for this #{tweet.parent_id.present? ? "reply" : "tweet"}" %>
+  <% end %>
+
+  <%= link_to "",
+              tweet_path(tweet),
+              class: "tweet-content-link",
+              aria: { label: "View #{tweet.parent_id.present? ? "reply" : "tweet"}" } %>
+</article>

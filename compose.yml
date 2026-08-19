@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: twitter
+      POSTGRES_PASSWORD: local-password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U twitter"]
+      interval: 2s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      RAILS_ENV: development
+      PGHOST: db
+      PGUSER: twitter
+      PGPASSWORD: local-password
+    volumes:
+      - .:/rails
+      - bundle:/usr/local/bundle
+      - storage:/rails/storage
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  bundle:
+  storage:

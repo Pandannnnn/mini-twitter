@@ -1,0 +1,21 @@
+<% content_for :title, "Tweet" %>
+
+<main class="tweets-main-page">
+  <header class="tweets-header">
+    <div>
+      <p class="tweets-eyebrow">Tweet details</p>
+      <h1>Tweet</h1>
+    </div>
+
+    <% if @tweet.parent.present? %>
+      <%= link_to "Back to parent", tweet_path(@tweet.parent), class: "tweet-create-button" %>
+    <% else %>
+      <%= link_to "Back to timeline", root_path, class: "tweet-create-button" %>
+    <% end %>
+  </header>
+
+  <div class="tweet-list">
+    <%= render @tweet %>
+    <%= render @replies %>
+  </div>
+</main>
