@@ -1,14 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Tweet, type: :model do
-  it "errors when character count > 200" do
+  it "successfully creates a tweet" do
+    tweet = Tweet.create(body: "pandan")
+    expect(tweet).to be_valid
+  end
+  it "validates character count" do
     tweet = Tweet.create(body: "a" * 201)
-    expect(tweet).not_to be_valid
+    expect(tweet.errors.full_messages).to include("Body is too long (maximum is 200 characters)")
   end
 
   it "checks for null body" do
     tweet = Tweet.create(body: nil)
-    expect(tweet).not_to be_valid
+    expect(tweet.errors.full_messages).to include("Body can't be blank")
   end
 
   it "checks for main tweets only" do

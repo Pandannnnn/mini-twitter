@@ -18,7 +18,8 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     environment:
-      RAILS_ENV: development
+      HOME: /tmp
+      # RAILS_ENV: development
       PGHOST: db
       PGUSER: twitter
       PGPASSWORD: local-password
