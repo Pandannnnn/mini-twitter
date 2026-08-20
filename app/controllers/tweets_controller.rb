@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[show edit update]
   def index
-    @tweets = Tweet.where(parent_id: nil).order(created_at: :desc)
+    @tweets = Tweet.main_tweets.order(created_at: :desc)
   end
 
   def show
