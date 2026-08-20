@@ -13,6 +13,7 @@ services:
       retries: 20
 
   web:
+    user: "1000:1000"
     build:
       context: .
       dockerfile: Dockerfile.dev
